@@ -4,8 +4,9 @@ from pathlib import Path
 import cv2
 import numpy as np
 import scipy.ndimage as ndi
-from skimage import feature, morphology, img_as_float
+from skimage import feature, img_as_float
 from skimage.morphology import reconstruction
+from skimage.segmentation import watershed
 from skimage.draw import rectangle
 from tensorflow.python.keras import backend as K
 from tensorflow.python.keras.losses import binary_crossentropy
@@ -96,6 +97,7 @@ def predict(data_dir, model, out_dir):
 
 
 def load_images_and_masks(imps, pm, ft):
+    """load images and predicted masks"""
     images = np.zeros((len(imps), 512, 512), np.uint8)
     masks = np.zeros((len(imps), 512, 512), np.uint8)
     for i in range(len(imps)):
@@ -138,7 +140,7 @@ def blob_detection(images, masks, h, gauss, b, c, d):
     local_max = feature.peak_local_max(distance, indices=False, labels=images4, min_distance=d,
                                        exclude_border=False)
     markers = ndi.label(local_max, structure=np.ones((3, 3, 3)))[0]
-    labels = morphology.watershed(-distance, markers, mask=images4)
+    labels = watershed(-distance, markers, mask=images4)
     return labels
 
 

@@ -9,7 +9,8 @@ import rstr
 
 from tensorflow.python.keras.models import load_model
 
-from utils import save_preprocessed_images, predict, load_folder, bce_dice_loss, dice_coeff
+from utils import save_preprocessed_images, predict, load_folder, bce_dice_loss, dice_coeff, load_images_and_masks, \
+    draw_blob4, count_blob4
 
 
 class Main(wx.Frame):
@@ -178,15 +179,14 @@ class Main(wx.Frame):
         for a, d in enumerate(data_dirs):
             imps = sorted(list(d.glob('./**/*tif')))
             try:
-                images, masks = self.load_images_and_masks(imps, Path(mask_dir), ft)
-            except:
-                print('no mask')
+                images, masks = load_images_and_masks(imps, Path(mask_dir), ft)
+            except Exception as e:
+                print(e)
                 continue
-
             if a in idx_out:
-                count = self.draw_blob4(imps, images, masks, out_dir, h=h, gauss=None, b=31, c=c, d=4, v=v)
+                count = draw_blob4(imps, images, masks, out_dir, h=h, gauss=None, b=31, c=c, d=4, v=v)
             else:
-                count = self.count_blob4(images, masks, h=h, gauss=None, b=31, c=c, d=4, v=v)
+                count = count_blob4(images, masks, h=h, gauss=None, b=31, c=c, d=4, v=v)
 
             tmp_se = pd.Series([d.name, count], index=df.columns)
             df = df.append(tmp_se, ignore_index=True)
