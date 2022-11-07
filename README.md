@@ -18,6 +18,9 @@ python main.py
 ```
 You can download pretrained model at zenodo: [https://zenodo.org/record/5533812](https://zenodo.org/record/5533812)
 
+## Installing wxPython
+If you encounter any problems regarding the installation of wxPython, please check the [official page](https://wxpython.org/pages/downloads/index.html).
+
 # How to Cite <br>
 Yohei Nitta, Hiroki Kawai, Jiro Osaka, Satoko Hakeda-Suzuki, Yoshitaka Nagai, Karolína Doubková, Takashi Suzuki, Gaia Tavosanis, Atsushi Sugie, MeDUsA: A novel system for automated axon quantification to evaluate neuroaxonal degeneration
 <a href="https://doi.org/10.1101/2021.10.25.465674">https://doi.org/10.1101/2021.10.25.465674</a>
