@@ -16,6 +16,7 @@ cd MeDUsA
 pip install -r requirements.txt
 python main.py
 ```
+You can download pretrained model at zenodo: [https://zenodo.org/record/5533812](https://zenodo.org/record/5533812)
 
 # How to Cite <br>
 Yohei Nitta, Hiroki Kawai, Jiro Osaka, Satoko Hakeda-Suzuki, Yoshitaka Nagai, Karolína Doubková, Takashi Suzuki, Gaia Tavosanis, Atsushi Sugie, MeDUsA: A novel system for automated axon quantification to evaluate neuroaxonal degeneration
